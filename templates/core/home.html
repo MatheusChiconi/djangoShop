@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/style_home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <section id="hero"> <!-- Criação do banner principal no inicio do site-->
+        
+        <h4>Trade-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>On all products</h1>
+        <p>Get up to 50% off on selected items</p>
+        <button>Shop Now</button>
+    </section>
+
+    <section id="feature" class="section-p1"><!-- Features-->
+        <!-- Criação de uma seção de features -->
+        <div class="fe-box">
+            <img src="{% static 'img/features/f1.png' %}" alt="">
+            <h6>Free Shipping</h6>
+        </div>
+        <div class="fe-box">
+            <img src="{% static 'img/features/f2.png' %}" alt="">
+            <h6>Online Order</h6>
+        </div>
+        <div class="fe-box">
+            <img src="{% static 'img/features/f3.png' %}" alt="">
+            <h6>Save Money</h6>
+        </div>
+        <div class="fe-box">
+            <img src="{% static 'img/features/f4.png' %}" alt="">
+            <h6>Promorions</h6>
+        </div>
+        <div class="fe-box">
+            <img src="{% static 'img/features/f5.png' %}" alt="">
+            <h6>Happy Sell</h6>
+        </div>
+        <div class="fe-box">
+            <img src="{% static 'img/features/f6.png' %}" alt="">
+            <h6>F24/7 Support</h6>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <!-- Seção de produtos -->
+        <h2>Feature Products</h2>
+        <p>Summer Collection New Morden Design</p>
+        
+        <div class="pro-container">
+            <!-- Loop para exibir os produtos -->
+            {% for produto in produtos|slice:":8" %}
+            <div class="pro">
+                <a href="{% url 'produto_detail' produto.codigo %}">
+                <img src="{{ produto.imagem_principal.url }}" alt="">
+                <div class="des">
+                    <span>{{ produto.marca }}</span>
+                    <h5>{{ produto.nome }}</h5>
+                    <div class="price">
+                    {% if produto.tem_desconto %}
+                        <span class="preco-antigo"><s>R${{ produto.comparacao_preco }}</s></span>
+                    {% endif %}
+                    <span class="preco-atual">R${{ produto.preco }}</span>
+                    {% if produto.tem_desconto %}
+                        <span class="desconto-label">{{ produto.desconto|floatformat:0 }}% off</span>
+                    {% endif %}
+                    </div>
+                </div>
+                </a>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            {% empty %}
+            <p class="no-products">Nenhum produto foi encontrado.</p>
+            {% endfor %}
+        
+        </div>
+    </section>
+
+    <section id="banner" class="section-m1">
+        <!-- Banner de promoção -->
+        <h4>Repair Services</h4>
+        <h2>Up to <span>70% OFF</span> - All t-Shirts & Accessories</h2>
+        <button class="normal">Explore More</button>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <!-- Segunda seção de produtos -->
+        <h2>New Arrivals</h2>
+        <p>Summer Collection New Morden Design</p>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="{% static 'img/products/n1.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n2.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n3.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n4.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n5.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n6.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n7.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="{% static 'img/products/n8.jpg' %}" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="star">
+                    </div>
+                    <h4>$50.00</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sm-banner" class="section-p1">
+        <!-- Anuncios de promoção maiores -->
+        <div class="banner-box">
+            <h4>crasy deals</h4>
+            <h2>Buy 1 get 1 for free</h2>
+            <span>The best classic dress is on sale at cara</span>
+            <button class="transparent">Learn More</button>
+        </div>
+        <div class="banner-box alt-image">
+            <!-- Imagem alternativa, pega todas as caracteristicas de banner-box e a imagem alternativa -->
+            <h4>crasy deals</h4>
+            <h2>Buy 1 get 1 for free</h2>
+            <span>The best classic dress is on sale at cara</span>
+            <button class="transparent">Learn More</button>
+        </div>
+    </section>
+
+    <section id="sm-banner" class="section-p1">
+        <!-- Anuncios de promoção menores -->
+        <div class="banner-box banner-box-smaller">
+            <h2>Season Sale</h2>
+            <h3>On all products</h3>
+        </div>
+        <div class="banner-box banner-box-smaller second">
+            <h2>Season Sale</h2>
+            <h3>On all products</h3>
+        </div>
+        <div class="banner-box banner-box-smaller third">
+            <h2>Season Sale</h2>
+            <h3>On all products</h3>
+        </div>
+    </section>
+
+    <section id="newsletter" class="section-m1">
+        <!-- Seção de newsletter -->
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get email updates about ours latest shop and <span>special offers</span> </p>
+        </div>
+        <div class="form">
+            <input type="email" placeholder="Enter your email">
+            <button class="normal">Subscribe</button>
+        </div>
+    </section>
+
+{% endblock %}

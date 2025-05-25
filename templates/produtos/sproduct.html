@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Página Inicial
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'produtos/css/style_sproduct.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section id="prodetails" class="section-p1"> <!-- Mostra produto principal e informacoes -->
+        <div class="single-pro-image"> <!-- Mostra imagem principal do produto -->
+            <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" id="mainImg" width="100%" alt="">
+        
+        
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ produto.Imagem_2.url }}" alt="{{ produto.nome }}" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ produto.Imagem_3.url }}" alt="{{ produto.nome }}" width="100%" class="small-img" alt="">
+                </div>
+                <div class="small-img-col">
+                    <img src="{{ produto.Imagem_4.url }}" alt="{{ produto.nome }}" width="100%" class="small-img" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="single-pro-details"> <!-- Mostra detalhes do produto principal-->
+            <h6>Home / Produtos</h6>
+            <h4>{{ produto.nome }}</h4>
+            <div class="marca-produto">
+                {{ produto.marca }}
+            </div>
+
+            <div class="preco-flex">
+            {% if produto.tem_desconto %}
+                <span class="preco-antigo">
+                R${{ produto.comparacao_preco }}
+                </span>
+            {% endif %}
+            <h2 class="preco-atual">R$ {{ produto.preco }}</h2>
+            </div>
+            
+            {% if produto.estoque <= 10 %}
+            <div class="estoque-aviso"> {{ produto.estoque }} produtos restantes</div>
+            {% endif %}
+
+            <select>
+            <option>Select Size</option>
+            <option>XL</option>
+            <option>XXL</option>
+            <option>XXXL</option>
+            <option>XXXL</option>
+            <option>Large</option>
+            </select>
+            <input type="number" value="1">
+            <button class="normal">Adicionar ao carrinho</button>
+            <h4>Detalhes do produto</h4>
+            <div class="descricao-produto">
+            {{ produto.descricao }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de produtos recomendados -->
+    <section id="product1" class="section-p1"> <h2>Você também pode gostar</h2>   
+
+    <section id="product1" class="section-p1"> <!-- Carrega as recomendacoes de prod -->
+        <div class="pro-container">
+            <!-- Loop para exibir os produtos -->
+            {% for produto in todos_produtos|slice:":4" %}
+                <div class="pro">
+                    <a href="{% url 'produto_detail' produto.codigo %}">
+                        <img src="{{ produto.imagem_principal.url }}" alt="{{ produto.nome }}" class="product-image">
+                        <div class="des">
+                            <span>{{ produto.marca }}</span>
+                            <h5>{{ produto.nome }}</h5>
+                            <div class="price">
+                                {% if produto.tem_desconto %}
+                                    <span class="preco-antigo"><s>R${{ produto.comparacao_preco }}</s></span>
+                                {% endif %}
+                                <span class="preco-atual">R${{ produto.preco }}</span>
+                                {% if produto.tem_desconto %}
+                                    <span class="desconto-label">{{ produto.desconto|floatformat:0 }}% off</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                </div>
+            {% empty %}
+                <p class="no-products">Nenhum produto foi encontrado.</p>
+            {% endfor %}
+        </div>
+    </section>   
+    
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'produtos/js/script_sproduct.js' %}"></script>
+{% endblock %}

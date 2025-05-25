@@ -1,0 +1,385 @@
+/* ========== RESET E TIPOGRAFIA GLOBAL ========== */
+/* Reset de margens, paddings e box-sizing para todos os elementos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+/* Comportamento suave ao rolar a página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos globais de títulos e parágrafos */
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+/* ========== DETALHES DO PRODUTO (PÁGINA DE PRODUTO ÚNICO) ========== */
+#prodetails {
+  display: flex;
+  margin-top: 20px;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+/* Coluna da imagem principal do produto */
+#prodetails .single-pro-image {
+  flex: 0 0 40%;
+}
+
+/* Imagem principal do produto */
+#prodetails .single-pro-image img#mainImg {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Coluna dos detalhes do produto */
+#prodetails .single-pro-details {
+  flex: 0 0 60%;   
+}
+
+/* Título do produto */
+#prodetails .single-pro-details h4 {
+  padding: 40px 0 20px 0;
+}
+
+/* Aviso de estoque acabando */
+#prodetails .single-pro-details .estoque-aviso {
+  color: #d7263d;
+  background: #ffeaea;
+  border: 1px solid #f5c2c7;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(215, 38, 61, 0.07);
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Preço do produto */
+#prodetails .single-pro-details h2 {
+  font-size: 26px;
+}
+
+/* Seletores de variação (ex: tamanho, cor) */
+#prodetails .single-pro-details select {
+  display: block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+/* Campo de quantidade */
+#prodetails .single-pro-details input {
+  width: 50px;
+  height: 47px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#prodetails .single-pro-details input:focus {
+  outline: none;
+}
+
+/* Botão de adicionar ao carrinho */
+#prodetails .single-pro-details button {
+  background: #088178;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(8, 129, 120, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+
+#prodetails .single-pro-details button:hover {
+  background: #06695e;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Mostra a marca do produto */
+#prodetails .single-pro-details .marca-produto {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Descrição do produto com rolagem */
+#prodetails .single-pro-details .descricao-produto {
+  height: 365px;             
+  padding: 4px 12px 12px 12px;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  background: #dddddd1f;
+  border-radius: 6px;
+  line-height: 1.6;
+  white-space: pre-line;
+  margin-top: -20px;
+}
+
+/* ========== MINIATURAS DE IMAGENS DO PRODUTO ========== */
+.small-img-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.small-img-col {
+  width: 24%;
+  cursor: pointer;
+}
+
+/* Miniaturas das imagens do produto */
+#prodetails .small-img {
+  width: 100%;
+  height: 100px; 
+  object-fit: cover;
+  border: 1px solid #eee; 
+  border-radius: 4px; 
+}
+
+/* ========== RECOMENDAÇÃO DE PRODUTOS (SEÇÃO DE PRODUTOS RELACIONADOS) ========== */
+#product1 {
+  text-align: center;
+}
+
+/* Container dos produtos recomendados */
+#product1 .pro-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+/* Card individual do produto recomendado */
+#product1 .pro {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 1px solid #cce7d0;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  margin: 15px 0;
+  transition: 0.2s ease;
+  position: relative;
+}
+
+#product1 .pro:hover {
+  box-shadow: 10px 10px 30px rgba(70, 62, 221, 0.2);
+}
+
+/* Imagem do produto recomendado */
+#product1 .pro img {
+  width: 100%;
+  border-radius: 20px;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Links dos produtos recomendados */
+#product1 .pro a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Descrição do produto recomendado */
+#product1 .pro .des {
+  text-align: start;
+  padding: 10px 0;
+}
+
+#product1 .pro .des span {
+  color: #606063;
+  font-weight: 12px;
+}
+
+#product1 .pro .des h5 {
+  color: #1a1a1a;
+  font-size: 18px;
+  padding-top: 7px;
+}
+
+#product1 .pro .des i {
+  font-size: 12px;
+  color: rgb(243, 181, 25);
+}
+
+#product1 .pro .des h4 {
+  color: #606063;
+  font-size: 15px;
+  padding-top: 7px;
+  font-weight: 700;
+}
+
+/* Ícone do carrinho nos produtos recomendados */
+#product1 .pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
+  font-weight: 500;
+  color: #088178;
+  border: 1px solid #cce7d0;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* ========== PREÇOS E DESCONTOS ========== */
+
+.precos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Alinha preço antigo e atual lado a lado */
+.preco-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Preço antigo riscado e destacado */
+.preco-antigo {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 1.2em;
+}
+
+/* Preço atual (em destaque) */
+.preco-atual {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Selo de desconto */
+.desconto-label {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  background: #9cce94;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* ========== MENSAGEM DE SEM PRODUTOS ========== */
+.no-products {
+  font-size: 18px;
+  color: #666;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ========== RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS ========== */
+@media (max-width: 900px) {
+  #prodetails {
+    flex-direction: column;
+    gap: 24px;
+  }
+  #prodetails .single-pro-image,
+  #prodetails .single-pro-details {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  #prodetails .single-pro-image img#mainImg {
+    height: 320px;
+  }
+  #prodetails .small-img {
+    height: 60px;
+  }
+  .small-img-group {
+    gap: 8px;
+  }
+  #product1 .pro-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+  #product1 .pro {
+    width: 90%;
+    min-width: unset;
+    margin: 12px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 32px; line-height: 40px; }
+  h2 { font-size: 24px; line-height: 30px; }
+  h4 { font-size: 16px; }
+  #prodetails .single-pro-image img#mainImg {
+    height: 180px;
+    border-radius: 8px;
+  }
+  #prodetails .small-img {
+    height: 40px;
+    border-radius: 4px;
+  }
+  #prodetails .single-pro-details .descricao-produto {
+    height: 120px;
+    font-size: 14px;
+    padding: 6px;
+  }
+  #prodetails .single-pro-details button {
+    font-size: 16px;
+    padding: 10px 18px;
+  }
+  #product1 .pro {
+    width: 98%;
+    padding: 8px 4px;
+    border-radius: 12px;
+  }
+  .no-products {
+    font-size: 15px;
+    padding: 10px;
+  }
+  #prodetails .single-pro-details .estoque-aviso {
+    font-size: 12px;
+    padding: 4px 8px;
+    margin-top: 5px;      /* Move 5px para baixo */
+    margin-bottom: 10px;
+  }
+
+}

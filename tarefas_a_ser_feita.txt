@@ -1,0 +1,39 @@
+[ TAREFAS PRIORITÁRIAS - ECOMMERCE DJANGO ]
+
+1. Criar sistema de login do cliente
+   - Estudar para ver como funciona o sistema de login do django, conferir a segurança
+   - Ver se o Django já oferece um sistema seguro (django.contrib.auth)
+   - Definir campos importantes: nome, email, senha, endereço, telefone etc.
+   - Área do cliente com histórico de pedidos.
+
+2. Criar a página do carrinho de compras funcional
+
+3. Criar sistema de personalização pelo admin
+   - Adicionar produtos, categorias, estoque pelo admin
+
+4. Limpar informações não muito importantes da página home
+   - Manter foco nos produtos, promoções e categorias principais
+
+5. Fazer página de admin personalizada
+   - Pesquisar como fazer
+   - Melhor visual e usabilidade para gerenciar os dados
+
+------------------------------------------------------------
+
+[ IDEIAS ADICIONAIS PARA IMPLEMENTAR DEPOIS ]
+
+1. Criar sistema e página do produto (atualizações futuras)
+   - Sistema de categorias
+   - Fazer sistema de tamanho.
+   - Fazer sistema de cores.
+   - Pensar uma maneira de colocar produtos semelhantes nos recomendados.
+
+- Adicionar sistema de busca por nome de produto
+- Filtro por categoria e/ou preço
+- Carrinho de compras e sistema de checkout
+- Integração com método de pagamento (futuramente)
+- Sistema de newsletter (campo de email na home)
+- Mensagens de sucesso/erro visuais (ex: login ou carrinho)
+- Avaliação e comentários nos produtos
+
+

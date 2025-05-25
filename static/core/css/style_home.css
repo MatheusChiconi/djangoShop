@@ -1,0 +1,477 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* ========== ESTILOS GLOBAIS ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+.section-m1 {
+  margin: 40px 0;
+}
+
+button.normal {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #088178;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 15px 30px;
+}
+
+button.transparent {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid white;
+  outline: none;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 15px 30px;
+}
+
+/* ========== SEÇÃO HERO (BANNER PRINCIPAL) ========== */
+#hero {
+  background-image: url("/static/img/hero4.png");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#hero h4 {
+  padding-bottom: 15px;
+}
+
+#hero h1 {
+  color: #088178;
+}
+
+#hero button {
+  background-image: url("/static/img/button.png");
+  background-color: transparent;
+  color: #088178;
+  border: none;
+  padding: 14px 80px 14px 65px;
+  background-repeat: no-repeat;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ========== SEÇÃO DE DESTAQUES ========== */
+#feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#feature .fe-box {
+  width: 180px;
+  text-align: center;
+  padding: 25px 15px;
+  box-shadow: 20px 20px 32px rgba(0, 0, 0, 0.03);
+  border: 1px solid #cce7d0;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+#feature .fe-box:hover {
+  box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.3);
+}
+
+#feature .fe-box img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#feature .fe-box h6 {
+  display: inline-block;
+  padding: 9px 8px 6px 8px;
+  line-height: 1;
+  border-radius: 1px;
+  background-color: #fddde4;
+  color: #088178;
+}
+
+/* Cores variadas para cada fe-box */
+#feature .fe-box:nth-child(2) h6 { background-color: #c1c3f9; color: #465b52; }
+#feature .fe-box:nth-child(3) h6 { background-color: #c1e9f9; color: #465b52; }
+#feature .fe-box:nth-child(4) h6 { background-color: #c1f9e7; color: #465b52; }
+#feature .fe-box:nth-child(5) h6 { background-color: #f3f9c1; color: #465b52; }
+#feature .fe-box:nth-child(6) h6 { background-color: #edc1f9; color: #465b52; }
+
+/* ========== SEÇÃO DE PRODUTOS ========== */
+#product1 {
+  text-align: center;
+}
+
+#product1 .pro-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+#product1 .pro {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 1px solid #cce7d0;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  margin: 15px 0;
+  transition: 0.2s ease;
+  position: relative;
+}
+
+#product1 .pro:hover {
+  box-shadow: 10px 10px 30px rgba(70, 62, 221, 0.2);
+}
+
+#product1 .pro img {
+  width: 100%;
+  border-radius: 20px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.no-products {
+  font-size: 18px;
+  color: #666;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+#product1 .pro .des {
+  text-align: start;
+  padding: 10px 0;
+}
+
+#product1 .pro a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Configuração de preços  */
+.precos { 
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.preco-antigo {
+    color: #888;
+    font-size: 15px;
+}
+.preco-atual {
+    font-weight: bold;
+    font-size: 15px;
+}
+.desconto-label {
+    margin-left: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    background: #9cce94;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+#product1 .pro .des span {
+  color: #606063;
+  font-weight: 12px;
+}
+
+#product1 .pro .des h5 {
+  color: #1a1a1a;
+  font-size: 18px;
+  padding-top: 7px;
+}
+
+#product1 .pro .des i {
+  font-size: 12px;
+  color: rgb(243, 181, 25);
+}
+
+#product1 .pro .des h4 {
+  color: #606063;
+  font-size: 15px;
+  padding-top: 7px;
+  font-weight: 700;
+}
+
+#product1 .pro .cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: #e8f6ea;
+  font-weight: 500;
+  color: #088178;
+  border: 1px solid #cce7d0;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* ========== BANNERS PROMOCIONAIS ========== */
+#banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url(/static/img/banner/b2.jpg);
+  width: 100%;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+}
+
+#banner h4 {
+  color: #fff;
+  font-size: 16px;
+}
+
+#banner h2 {
+  color: #fff;
+  font-size: 30px;
+  padding: 10px 0;
+}
+
+#banner h2 span {
+  color: #076c0c;
+}
+
+#banner button:hover {
+  background-color: #065a55;
+  color: #fff;
+}
+
+/* Banners menores */
+#sm-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#sm-banner .banner-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 30px;
+  text-align: center;
+  background-image: url(/static/img/banner/b17.jpg);
+  min-width: 650px;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+}
+
+#sm-banner .banner-box.alt-image { 
+  background-image: url(/static/img/banner/b10.jpg);
+}
+
+#sm-banner h4 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#sm-banner h2 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+#sm-banner span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+
+#sm-banner .banner-box:hover button {
+  background-color: #065a55; 
+  color: #fff;
+  border: 1px solid #065a55;
+}
+
+#sm-banner .banner-box.banner-box-smaller { 
+  background-image: url(/static/img/banner/b7.jpg);
+  min-width: 30%;
+  height: 30vh;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#sm-banner .banner-box.banner-box-smaller.second {
+  background-image: url(/static/img/banner/b4.jpg);
+}
+
+#sm-banner .banner-box.banner-box-smaller.third {
+  background-image: url(/static/img/banner/b18.jpg);
+}
+
+#sm-banner .banner-box.banner-box-smaller h2 { 
+  color: white;
+  font-weight: 900;
+  font: 22px;
+}
+
+#sm-banner .banner-box.banner-box-smaller h3 { 
+  color: #ec544e;
+  font-weight: 800;
+  font: 15px;
+}
+
+/* ========== NEWSLETTER ========== */
+#newsletter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 80px;
+  background-image: url(/static/img/hero4.png);
+  background-repeat: no-repeat;
+  background-position: 20% 30%;
+  background-color: #041E42;
+}
+
+#newsletter h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+#newsletter p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #818ea0;
+}
+
+#newsletter p span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffbd27;
+}
+
+#newsletter .form {
+  display: flex;
+  width: 40%;
+}
+
+#newsletter input {
+  height: 3.125rem;
+  padding: 0 1.25em;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#newsletter button {
+  background-color: #ffbd27;
+  color: #041E42;
+  white-space: nowrap;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 1024px) {
+  .section-p1 {
+    padding: 40px 40px;
+  }
+
+  #hero {
+    height: 70vh;
+    padding: 0 80px;
+    background-position: top 30% right 30%;
+  }
+
+  #feature {
+    justify-content: center;
+  }
+
+  #feature .fe-box {
+    margin: 15px 15px;
+  }
+
+  #product1 .pro-container {
+    justify-content: center;    
+  }
+
+  #product1 .pro {
+    margin: 15px;
+  }
+
+  #banner {
+    height: 20vh;
+  }
+
+  #sm-banner .banner-box {
+    min-width: 100%;
+    height: 30vh;
+  }
+
+  #banner3 {
+    padding: 0 40px;
+  }
+
+  #banner3 .banner-box {
+    width: 28%;
+  }
+}
