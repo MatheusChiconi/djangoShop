@@ -18,6 +18,8 @@
    - Pesquisar como fazer
    - Melhor visual e usabilidade para gerenciar os dados
 
+testando para ver se funcionou a configuração do meu notebook
+
 ------------------------------------------------------------
 
 [ IDEIAS ADICIONAIS PARA IMPLEMENTAR DEPOIS ]
