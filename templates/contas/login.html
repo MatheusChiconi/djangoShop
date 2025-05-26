@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Seu E-commerce{% endblock %}
+
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'contas/css/login_page.css' %}">
+{% endblock %}
+
+{% block content %} <!-- Conteúdo da página de login -->
+
+    <section id="login-form" class="section-p1">
+        <div class="container"> 
+            <h2>Login</h2>
+            
+            <form action="" method="POST"> {% csrf_token %} <div>
+                {% csrf_token %}
+
+            </form>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'contas/js/login.js' %}"></script>
+{% endblock %}

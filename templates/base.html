@@ -22,13 +22,18 @@
         
         <div>
             <ul id="navbar">
-                <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
-                <li><a class="{% if 'shop' in request.path %}active{% endif %}" href="{% url 'shop' %}">Shop</a></li>
-                <li><a class="{% if 'blog' in request.path %}active{% endif %}" href="{% url 'blog' %}">Blog</a></li>
-                <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
-                <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
-                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+            <li><a class="{% if 'shop' in request.path %}active{% endif %}" href="{% url 'shop' %}">Shop</a></li>
+            <li><a class="{% if 'blog' in request.path %}active{% endif %}" href="{% url 'blog' %}">Blog</a></li>
+            <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
+            <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Login</a></li> <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            <li><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
+            <a href="#" id="close"><i class="fas fa-times"></i></a>
             </ul>
         </div>
 
