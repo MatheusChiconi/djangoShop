@@ -16,28 +16,33 @@ h1 {
   font-size: 50px;
   line-height: 64px;
   color: #222;
+  font-weight: revert;
 }
 
 h2 {
   font-size: 46px;
   line-height: 54px;
   color: #222;
+  font-weight: revert;
 }
 
 h4 {
   font-size: 20px;
   color: #222;
+  font-weight: revert;
 }
 
 h6 {
   font-weight: 700;
   font-size: 12px;
+  font-weight: revert;
 }
 
 p {
   font-size: 16px;
   color: #465b52;
   margin: 15px 0 20px 0;
+  font-weight: revert;
 }
 
 /* CLASSES UTILITÁRIAS (usadas no header/footer) */
@@ -77,6 +82,8 @@ p {
   font-weight: 600;
   color: #222;
   transition: 0.3s ease;
+  padding-top: 10px; 
+  display: inline-block;
 }
 
 #navbar li a:hover,
@@ -108,13 +115,19 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start; /* Garante alinhamento no topo por padrão */
 }
 
 footer .col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Adiciona espaçamento acima para "abaixar" */
+}
+
+footer .col.about,
+footer .col.account {
+  margin-top: 20px; /* Ajuste o valor conforme necessário */
 }
 
 footer .logo {
