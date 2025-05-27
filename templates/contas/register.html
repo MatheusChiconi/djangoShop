@@ -8,7 +8,60 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Escreva o HTML do formulário de registro aqui -->
+    <section class="vh-100" style="background-color: #b3b8cb;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <h3 class="mb-5">Registrar</h3>
+
+                            <form action="" method="POST">
+                                {% csrf_token %}
+
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if forloop.first %}
+                                            <div class="alert alert-warning alert-dismissible fade show login-error" role="alert">
+                                                {{ message }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="nome" id="typeNameX-2" class="form-control form-control-lg" value="{{ nome }}" required placeholder="Nome" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="email" name="email" id="typeEmailX-2" class="form-control form-control-lg" value="{{ email }}" required placeholder="Email" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password1" id="typePassword1X-2" class="form-control form-control-lg" required placeholder="Senha" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password2" id="typePassword2X-2" class="form-control form-control-lg" required placeholder="Repita a Senha" />
+                                </div>
+
+                                <button class="btn btn-lg btn-block w-100 text-white" type="submit" style="background-color: #335998; border-color: #335998;">Registrar</button>
+
+                                <hr class="my-4">
+
+                                <div class="text-center mt-4">
+                                    <p class="mb-0">Já tem uma conta? <a href="{% url 'login' %}" class="fw-bold">Entrar</a></p>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 
