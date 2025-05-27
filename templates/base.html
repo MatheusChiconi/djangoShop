@@ -31,9 +31,9 @@
             <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
             {% if user.is_authenticated %}
             <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
-                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Login</a></li> <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
+                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Accont</a></li>
             {% else %}
-                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Login</a></li>
+                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Register/Login</a></li>
             {% endif %}
             <li><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
             <a href="#" id="close"><i class="fas fa-times"></i></a>
