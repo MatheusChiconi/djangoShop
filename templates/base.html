@@ -30,9 +30,10 @@
             <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
             <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'login' %}">Login</a></li> <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
+            <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
+                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Login</a></li> <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
             {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Login</a></li>
             {% endif %}
             <li><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
             <a href="#" id="close"><i class="fas fa-times"></i></a>

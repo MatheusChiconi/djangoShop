@@ -13,11 +13,36 @@
 
     <section id="login-form" class="section-p1">
         <div class="container"> 
-            <h2>Login</h2>
+            <h2>Entre na sua conta</h2>
             
-            <form action="" method="POST"> {% csrf_token %} <div>
+            <form action="" method="POST"> <!-- Formulario para o login -->
                 {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ email }}">
+                    <div id="emailHelp" class="form-text">Nunca compartilharemos seu email com ninguém.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Senha</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
+                </div>
 
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if forloop.first %}
+                            <div class="alert alert-warning alert-dismissible fade show login-error" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+                <button type="submit" class="btn btn-success">Entrar</button>
             </form>
 
         </div>
