@@ -1,6 +1,7 @@
 [ TAREFAS PRIORITÁRIAS - ECOMMERCE DJANGO ]
 
 1. Criar sistema de login do cliente
+   - Link para form pronto login bootstrap https://mdbootstrap.com/docs/standard/extended/login/
    - Estudar para ver como funciona o sistema de login do django, conferir a segurança
    - Ver se o Django já oferece um sistema seguro (django.contrib.auth)
    - Definir campos importantes: nome, email, senha, endereço, telefone etc.
