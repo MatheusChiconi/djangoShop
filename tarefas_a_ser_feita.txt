@@ -2,10 +2,9 @@
 
 1. Criar sistema de login do cliente
    - Link para form pronto login bootstrap https://mdbootstrap.com/docs/standard/extended/login/
-   - Estudar para ver como funciona o sistema de login do django, conferir a segurança
-   - Ver se o Django já oferece um sistema seguro (django.contrib.auth)
-   - Definir campos importantes: nome, email, senha, endereço, telefone etc.
+   - Definir campos importantes: endereço, telefone, cpf
    - Área do cliente com histórico de pedidos.
+   - Caso um cliente já logado entre no endereço de entrar ou registrar ele redireciona direto pro perfil
 
 2. Criar a página do carrinho de compras funcional
 
@@ -18,8 +17,6 @@
 5. Fazer página de admin personalizada
    - Pesquisar como fazer
    - Melhor visual e usabilidade para gerenciar os dados
-
-testando para ver se funcionou a configuração do meu notebook
 
 ------------------------------------------------------------
 
