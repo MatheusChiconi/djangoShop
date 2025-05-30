@@ -17,12 +17,13 @@
 
                             <h3 class="mb-5">Registrar</h3>
 
-                            <form action="" method="POST">
+                            <form action="{% url 'register' %}" method="POST"> 
                                 {% csrf_token %}
 
                                 {% if messages %}
                                     {% for message in messages %}
-                                        {% if forloop.first %}
+                                        {% if forloop.first %} 
+                                            {# MODIFICAÇÃO: Voltando para o estilo de alerta fixo como era antes #}
                                             <div class="alert alert-warning alert-dismissible fade show login-error" role="alert">
                                                 {{ message }}
                                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -40,6 +41,14 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
+                                    <input type="text" name="telefone" id="typeTelefoneX-2" class="form-control form-control-lg" value="{{ telefone }}" placeholder="Telefone (Opcional)" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" name="cpf" id="typeCpfX-2" class="form-control form-control-lg" value="{{ cpf }}" placeholder="CPF" />
+                                </div>
+                                
+                                <div class="form-outline mb-4">
                                     <input type="password" name="password1" id="typePassword1X-2" class="form-control form-control-lg" required placeholder="Senha" />
                                 </div>
 
@@ -51,7 +60,7 @@
 
                                 <hr class="my-4">
 
-                                <div class="text-center mt-4">
+                                <div class="text-center mt-3"> 
                                     <p class="mb-0">Já tem uma conta? <a href="{% url 'login' %}" class="fw-bold">Entrar</a></p>
                                 </div>
                             </form>
@@ -66,5 +75,4 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- Se precisar de JS específico para a página de registro, coloque aqui -->
 {% endblock %}
