@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def login_user(request):
     email = ""
@@ -66,3 +67,10 @@ def register_user(request):
         'email': email,
     }
     return render(request, 'contas/register.html', context)
+
+@login_required # Se não estiver logado, redireciona para a página de login
+def account(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'contas/account-page.html', context)

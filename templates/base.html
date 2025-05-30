@@ -30,8 +30,7 @@
             <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
             <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
             {% if user.is_authenticated %}
-            <!-- TROCAR DEPOIS PARA ACCONT COLOQUEI TEMPORARIAMENTE -->
-                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Accont</a></li>
+                <li><a class="{% if request.path == '/contas/account/' %}active{% endif %}" href="{% url 'account' %}">Accont</a></li>
             {% else %}
                 <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Register/Login</a></li>
             {% endif %}

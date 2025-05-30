@@ -7,6 +7,7 @@
    - Caso um cliente já logado entre no endereço de entrar ou registrar ele redireciona direto pro perfil
 
 2. Criar a página do carrinho de compras funcional
+(https://mdbootstrap.com/docs/standard/design-blocks/ecommerce/shopping-cart/)
 
 3. Criar sistema de personalização pelo admin
    - Adicionar produtos, categorias, estoque pelo admin

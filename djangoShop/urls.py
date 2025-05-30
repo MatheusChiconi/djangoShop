@@ -40,7 +40,6 @@ urlpatterns = [
     path('about/', placeholder_view, name='about'),
     path('contact/', placeholder_view, name='contact'),
     path('cart/', placeholder_view, name='cart'),
-    path('account/', placeholder_view, name='account'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
