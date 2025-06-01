@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, get_user_model
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 import re
+
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+from .forms import UserUpdateForm
 
 User = get_user_model()
 
@@ -125,7 +128,20 @@ def register_user(request):
 
 @login_required
 def account(request):
-    context = {
-        'user': request.user,
-    }
-    return render(request, 'contas/account-page.html', context)
+    user = request.user
+
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Informações atualizadas com sucesso!')
+            return redirect('account')  # ou 'contas:account' se estiver com namespace
+        else:
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+    else:
+        form = UserUpdateForm(instance=user)
+
+    return render(request, 'contas/account-page.html', {
+        'form': form,
+        'user': user
+    })

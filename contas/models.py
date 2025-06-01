@@ -13,7 +13,32 @@ class UsuarioCustomizado(AbstractUser):
         max_length=14,
         unique=True
     )
+    cep = models.CharField(
+        max_length=10,
+        null=True, 
+        blank=True
+    )
+    endereco = models.CharField(
+        max_length=255,
+        null=True, 
+        blank=True
+    )
+    cidade = models.CharField(
+        max_length=100,
+        null=True, 
+        blank=True
+    )
+    estado = models.CharField(
+        max_length=2,
+        null=True, 
+        blank=True
+    )
+    data_nascimento = models.DateField(
+        null=True, 
+        blank=True
+    )
 
     def __str__(self):
-        return self.email 
+        return self.email
+    
 
