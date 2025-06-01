@@ -4,7 +4,8 @@
    - Link para form pronto login bootstrap https://mdbootstrap.com/docs/standard/extended/login/
    - Definir campos importantes: endereço, telefone, cpf
    - Área do cliente com histórico de pedidos.
-   - Caso um cliente já logado entre no endereço de entrar ou registrar ele redireciona direto pro perfil
+   - Caso um cliente já logado entre no endereço de entrar ou registrar 
+   ele redireciona direto pro perfil
 
 2. Criar a página do carrinho de compras funcional
 (https://mdbootstrap.com/docs/standard/design-blocks/ecommerce/shopping-cart/)
@@ -28,6 +29,12 @@
    - Fazer sistema de tamanho.
    - Fazer sistema de cores.
    - Pensar uma maneira de colocar produtos semelhantes nos recomendados.
+
+2. Na página de perfil do cliente
+   - Encontrei um erro desegurança onde eu consigo editar o cpf e o nome 
+   se mexer no insepcionar elemento do navegador.
+   - Pensar um jeito dele carregar a cidade e o estado pelo cep, enquanto 
+   o cliente digita.
 
 - Adicionar sistema de busca por nome de produto
 - Filtro por categoria e/ou preço

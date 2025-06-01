@@ -23,6 +23,8 @@ class UserUpdateForm(forms.ModelForm):
                 'class': 'form-control form-control-lg',
                 'type': 'tel',
                 'id': 'telefone',
+                'pattern': '[0-9]+',
+                'inputmode': 'numeric',
                 'readonly': True
             }),
             'cpf': forms.TextInput(attrs={
@@ -35,6 +37,9 @@ class UserUpdateForm(forms.ModelForm):
                 'class': 'form-control form-control-lg',
                 'type': 'text',
                 'id': 'cep',
+                'pattern': '[0-9]{8}',
+                'maxlength': '8',
+                'inputmode': 'numeric',
                 'readonly': True
             }),
             'endereco': forms.TextInput(attrs={
