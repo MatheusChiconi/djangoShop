@@ -173,6 +173,90 @@ footer .copyright {
   text-align: center;
 }
 
+
+/* CARRINHO LATERAL RESPONSIVO */
+/* Estilo extra para imagens no carrinho */
+.offcanvas-body .img-thumbnail {
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+/* Botão do carrinho */
+#navbar i.far.fa-shopping-bag,
+#mobile i.far.fa-shopping-bag {
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+#navbar i.far.fa-shopping-bag:hover,
+#mobile i.far.fa-shopping-bag:hover {
+    color: #007bff;
+}
+
+.cart-pricing-summary {
+    padding: 15px 20px 0;
+    border-top: 1px solid #eee;
+    background-color: white;
+}
+
+.subtotal-label, .total-label {
+    font-weight: 500;
+}
+
+.subtotal-value {
+    font-size: 14px;
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+.total-label {
+    font-size: 18px;
+}
+
+.total-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #088178;
+}
+
+.cart-button-container {
+    background-color: white;
+    text-align: center;
+    padding: 15px; /* A segunda definição (15px) sobrepõe a anterior (15px 20px) */
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #eee;
+}
+
+.cart-button {
+    background-color: #088178; /* Change to your preferred color */
+    color: white;
+    border: none;
+    padding: 10px 0;
+    font-weight: 500;
+    width: 90%; /* A segunda definição (90%) sobrepõe a anterior (100%) */
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.cart-button:hover {
+    background-color: #066861;
+    color: white;
+}
+
+/* Cart sidebar styling */
+.offcanvas-body {
+    padding-bottom: 0; /* Remove bottom padding from body */
+}
+
+.cart-items {
+    overflow-y: auto;
+    max-height: calc(100vh - 170px); /* Adjust based on your header and button height */
+}
+
+
 /* RESPONSIVO (header/footer) */
 @media (max-width: 1024px) {
   .section-p1 {

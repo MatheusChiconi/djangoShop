@@ -1,24 +1,27 @@
 [ TAREFAS PRIORITÁRIAS - ECOMMERCE DJANGO ]
 
-1. Criar sistema de login do cliente
-   - Link para form pronto login bootstrap https://mdbootstrap.com/docs/standard/extended/login/
-   - Definir campos importantes: endereço, telefone, cpf
+1. Carrinho
+   - Tentar fazer o carrinho um popup, e no menu lateral se clicar na bolsinha
+   do canto direito
+
+2. Criar sistema de login do cliente
+   https://mdbootstrap.com/docs/standard/extended/login/
    - Área do cliente com histórico de pedidos.
-   - Caso um cliente já logado entre no endereço de entrar ou registrar 
-   ele redireciona direto pro perfil
 
-2. Criar a página do carrinho de compras funcional
-(https://mdbootstrap.com/docs/standard/design-blocks/ecommerce/shopping-cart/)
+3. Criar a página do carrinho de compras funcional
+   (https://mdbootstrap.com/docs/standard/design-blocks/ecommerce/shopping-cart/)
 
-3. Criar sistema de personalização pelo admin
+4. Criar sistema de personalização pelo admin
    - Adicionar produtos, categorias, estoque pelo admin
 
-4. Limpar informações não muito importantes da página home
+5. Limpar informações não muito importantes da página home
    - Manter foco nos produtos, promoções e categorias principais
 
-5. Fazer página de admin personalizada
+6. Fazer página de admin personalizada
    - Pesquisar como fazer
    - Melhor visual e usabilidade para gerenciar os dados
+
+7. Aplicar o Google Analytic (Facil de fazer e muito foda para todos os projetos)
 
 ------------------------------------------------------------
 
@@ -35,6 +38,7 @@
    se mexer no insepcionar elemento do navegador.
    - Pensar um jeito dele carregar a cidade e o estado pelo cep, enquanto 
    o cliente digita.
+   - Falta por, bairro, numero e complemento
 
 - Adicionar sistema de busca por nome de produto
 - Filtro por categoria e/ou preço

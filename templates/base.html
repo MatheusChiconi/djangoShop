@@ -24,23 +24,29 @@
         
         <div>
             <ul id="navbar">
-            <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
-            <li><a class="{% if 'shop' in request.path %}active{% endif %}" href="{% url 'shop' %}">Shop</a></li>
-            <li><a class="{% if 'blog' in request.path %}active{% endif %}" href="{% url 'blog' %}">Blog</a></li>
-            <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
-            <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
-            {% if user.is_authenticated %}
-                <li><a class="{% if request.path == '/contas/account/' %}active{% endif %}" href="{% url 'account' %}">Accont</a></li>
-            {% else %}
-                <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Register/Login</a></li>
-            {% endif %}
-            <li><a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a></li>
-            <a href="#" id="close"><i class="fas fa-times"></i></a>
+                <li><a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+                <li><a class="{% if 'shop' in request.path %}active{% endif %}" href="{% url 'shop' %}">Shop</a></li>
+                <li><a class="{% if 'blog' in request.path %}active{% endif %}" href="{% url 'blog' %}">Blog</a></li>
+                <li><a class="{% if 'about' in request.path %}active{% endif %}" href="{% url 'about' %}">About</a></li>
+                <li><a class="{% if 'contact' in request.path %}active{% endif %}" href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a class="{% if request.path == '/contas/account/' %}active{% endif %}" href="{% url 'account' %}">Accont</a></li>
+                {% else %}
+                    <li><a class="{% if request.path == '/contas/login/' %}active{% endif %}" href="{% url 'login' %}">Register/Login</a></li>
+                {% endif %}
+                <li>
+                    <a data-bs-toggle="offcanvas" href="#cartSidebar" role="button" aria-controls="cartSidebar">
+                        <i class="far fa-shopping-bag"></i>
+                    </a>
+                </li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
             </ul>
         </div>
 
         <div id="mobile">
-            <a href="{% url 'cart' %}"><i class="far fa-shopping-bag"></i></a>
+            <a data-bs-toggle="offcanvas" href="#cartSidebar" role="button" aria-controls="cartSidebar">
+                <i class="far fa-shopping-bag"></i>
+            </a>
             <i id="bar" class="fas fa-bars"></i>
             <a href="#" id="close"><i class="fas fa-times"></i></a>
         </div>
@@ -52,6 +58,42 @@
         <!-- O conteúdo das páginas filhas será inserido aqui -->
         {% endblock %}
     </main>
+
+    <!-- ========== OFFCANVAS CARRINHO ========== -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="cartSidebarLabel">Meu Carrinho</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="cart-items">
+                <p>Seu carrinho está vazio.</p>
+                <!-- Exemplo de item do carrinho -->
+                <div class="d-flex align-items-center mb-3">
+                    <img src="{% static 'img/products/f1.jpg' %}" alt="Produto" class="img-thumbnail me-2" style="width: 60px; height: 60px;">
+                    <div>
+                        <p class="mb-1">Produto Exemplo</p>
+                        <small>R$ 99,00</small>
+                    </div>
+                </div>
+                <!-- Outros items do carrinho irão aqui -->
+            </div>
+        </div>
+        <!-- Pricing summary above the button -->
+        <div class="cart-pricing-summary">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="subtotal-label">Subtotal:</span>
+                <span class="subtotal-value">R$ 120,00</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+                <span class="total-label">Total:</span>
+                <span class="total-value">R$ 99,00</span>
+            </div>
+        </div>
+        <div class="cart-button-container">
+            <a href="{% url 'cart' %}" class="btn cart-button">Ir para o Carrinho</a>
+        </div>
+    </div>
 
     <!-- ========== RODAPÉ ========== -->
     <footer class="section-p1">
@@ -104,7 +146,6 @@
 
     <!-- Scripts -->
     <script src="{% static 'core/js/script_base.js' %}"></script>
-    <!-- Bootstrap JS -->
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
