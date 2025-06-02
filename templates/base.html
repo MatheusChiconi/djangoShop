@@ -61,37 +61,56 @@
 
     <!-- ========== OFFCANVAS CARRINHO ========== -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="cartSidebarLabel">Meu Carrinho</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        <div class="offcanvas-header cart-header-custom">
+            <h5 class="offcanvas-title cart-title-custom" id="cartSidebarLabel">🛒 Meu Carrinho</h5>
+            <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
         </div>
+
         <div class="offcanvas-body">
             <div class="cart-items">
+                <!-- Mensagem de carrinho vazio -->
                 <p>Seu carrinho está vazio.</p>
+
                 <!-- Exemplo de item do carrinho -->
-                <div class="d-flex align-items-center mb-3">
-                    <img src="{% static 'img/products/f1.jpg' %}" alt="Produto" class="img-thumbnail me-2" style="width: 60px; height: 60px;">
-                    <div>
-                        <p class="mb-1">Produto Exemplo</p>
-                        <small>R$ 99,00</small>
+                <div class="cart-item">
+                    <img src="{% static 'img/products/f1.jpg' %}" alt="Produto" class="item-image me-2">
+
+                    <div class="item-details">
+                        <p class="item-name mb-1">Produto Exemplo</p>
+                        <button class="remove-btn" aria-label="Remover item">&times;</button>
+
+                        <div class="quantity-price">
+                            <div class="quantity-control">
+                                <button class="qty-btn">−</button>
+                                <span class="qty">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <div class="price-info text-end">
+                                <span class="original-price">R$ 120,00</span><br>
+                                <span class="discounted-price">R$ 99,00</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Outros items do carrinho irão aqui -->
+                <!-- Fim do item -->
             </div>
         </div>
-        <!-- Pricing summary above the button -->
-        <div class="cart-pricing-summary">
+
+        <!-- Pricing summary -->
+        <div class="cart-pricing-summary px-3 mb-2">
             <div class="d-flex justify-content-between align-items-center">
                 <span class="subtotal-label">Subtotal:</span>
                 <span class="subtotal-value">R$ 120,00</span>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-1">
                 <span class="total-label">Total:</span>
-                <span class="total-value">R$ 99,00</span>
+                <span class="total-value fw-bold">R$ 99,00</span>
             </div>
         </div>
-        <div class="cart-button-container">
-            <a href="{% url 'cart' %}" class="btn cart-button">Ir para o Carrinho</a>
+
+        <!-- Botão -->
+        <div class="cart-button-container text-center px-3 pb-3">
+            <a href="{% url 'cart' %}" class="btn cart-button w-100">Ir para o Carrinho</a>
         </div>
     </div>
 
