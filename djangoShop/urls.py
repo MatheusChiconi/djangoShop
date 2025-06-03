@@ -33,6 +33,7 @@ urlpatterns = [
     path('produto/<uuid:codigo>/', produtos, name='produto_detail'),
     path('contas/', include('contas.urls')),
     path('contas/', include('django.contrib.auth.urls')),  # URLs de autenticação padrão do Django
+    path('carrinho/', include('carrinho.urls')),
 
     # Tirar o placeholder_view e colocar a view correta quando estiver pronto
     path('shop/', placeholder_view, name='shop'),

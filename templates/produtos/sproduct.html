@@ -60,7 +60,10 @@
             <option>Large</option>
             </select>
             <input type="number" value="1">
-            <button class="normal">Adicionar ao carrinho</button>
+            <form action="{% url 'add_to_cart' produto.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="normal">Adicionar ao carrinho</button>
+            </form>
             <h4>Detalhes do produto</h4>
             <div class="descricao-produto">
             {{ produto.descricao }}
