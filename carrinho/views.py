@@ -9,6 +9,7 @@ def add_to_cart(request, product_id, qnt=1):
     produto = get_object_or_404(Produto, id=product_id)
     if produto.estoque < qnt:
         # Se o estoque for menor que a quantidade, não adiciona ao carrinho
+        # COLOCAR UMA MENSAGEM DE ERRO NA PÁGINA
         return redirect('home')
     cart.add(produto, qnt=qnt)
     code = produto.codigo

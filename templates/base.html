@@ -60,7 +60,7 @@
     </main>
 
     <!-- ========== OFFCANVAS CARRINHO ========== -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
+    <div class="offcanva offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
         <div class="offcanvas-header cart-header-custom">
             <h5 class="offcanvas-title cart-title-custom" id="cartSidebarLabel">🛒 Meu Carrinho</h5>
             <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
@@ -68,31 +68,35 @@
 
         <div class="offcanvas-body">
             <div class="cart-items">
-                <!-- Mensagem de carrinho vazio -->
-                <p>Seu carrinho está vazio.</p>
+                {% if cart.get_total_quantity == 0 %}
+                    <p>Seu carrinho está vazio.</p>
+                {% else %}
+                    {% for item in cart.items %}
+                        <div class="cart-item">
+                            
+                            <img src="{{ item.image }}" alt="" class="item-image me-2">
 
-                <!-- Exemplo de item do carrinho -->
-                <div class="cart-item">
-                    <img src="{% static 'img/products/f1.jpg' %}" alt="Produto" class="item-image me-2">
+                            <div class="item-details">
+                                <p class="item-name mb-1">{{ item.name }}</p>
+                                <button class="remove-btn" aria-label="Remover item">&times;</button>
 
-                    <div class="item-details">
-                        <p class="item-name mb-1">Produto Exemplo</p>
-                        <button class="remove-btn" aria-label="Remover item">&times;</button>
-
-                        <div class="quantity-price">
-                            <div class="quantity-control">
-                                <button class="qty-btn">−</button>
-                                <span class="qty">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                            <div class="price-info text-end">
-                                <span class="original-price">R$ 120,00</span><br>
-                                <span class="discounted-price">R$ 99,00</span>
+                                <div class="quantity-price">
+                                    <div class="quantity-control">
+                                        <button class="qty-btn">−</button>
+                                        <span class="qty">{{ item.quantity }}</span>
+                                        <button class="qty-btn">+</button>
+                                    </div>
+                                    <div class="price-info text-end">
+                                        {% if item.old_price %}
+                                            <span class="original-price">R$ {{ item.old_price }}</span><br>
+                                        {% endif %}
+                                        <span class="discounted-price">R$ {{ item.price }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Fim do item -->
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
 
@@ -100,11 +104,11 @@
         <div class="cart-pricing-summary px-3 mb-2">
             <div class="d-flex justify-content-between align-items-center">
                 <span class="subtotal-label">Subtotal:</span>
-                <span class="subtotal-value">R$ 120,00</span>
+                <span class="subtotal-value">R$ {{ cart.get_total_old_price }}</span>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-1">
                 <span class="total-label">Total:</span>
-                <span class="total-value fw-bold">R$ 99,00</span>
+                <span class="total-value fw-bold">R$ {{ cart.get_total_price }}</span>
             </div>
         </div>
 
@@ -120,7 +124,7 @@
             <img src="{% static 'img/logo.png' %}" class="logo" alt="Logo">
             <h4>Contact</h4>
             <p><strong>Address:</strong> 123 Main Street, Anytown, CA 12345</p>
-            <p><strong>Phone:</strong> (555) 555-1234</p>
+            <p><strong>Phone:</strong> (555) 999-9999</p>
             <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
 
             <div class="follow">
