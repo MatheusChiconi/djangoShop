@@ -312,6 +312,128 @@ p {
   width: 100%;
 }
 
+/* Cart notification styling */
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 15px 20px;
+    z-index: 9999;
+    transform: translateX(150%);
+    transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    border-left: 4px solid #088178;
+}
+
+.cart-notification.show {
+    transform: translateX(0);
+}
+
+.notification-icon {
+    margin-left: 13px;
+    color: #088178;
+    font-size: 24px;
+}
+
+.notification-message {
+    flex: 1;
+    font-size: 16px;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 15px;
+    color: #aaa;
+}
+
+/* Button animations */
+@keyframes button-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes button-pulse {
+  0% {
+    box-shadow: 0 4px 16px rgba(8, 129, 120, 0.15);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(8, 129, 120, 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(8, 129, 120, 0.15);
+  }
+}
+
+/* Animation class to be added by JavaScript */
+.adding-to-cart {
+  animation: button-press 0.4s ease-in-out, button-pulse 0.8s ease-in-out;
+  background-color: #066e66 !important;
+  pointer-events: none;
+}
+
+/* Add a shine effect for the button */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+#add-to-cart-form input[type="number"] {
+    width: 70px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#add-to-cart-form input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    background-color: #fff;
+}
+
+#add-to-cart-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
 /* ========== RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS ========== */
 @media (max-width: 900px) {
   #prodetails {

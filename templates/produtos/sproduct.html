@@ -51,18 +51,10 @@
             <div class="estoque-aviso"> {{ produto.estoque }} produtos restantes</div>
             {% endif %}
 
-            <select>
-            <option>Select Size</option>
-            <option>XL</option>
-            <option>XXL</option>
-            <option>XXXL</option>
-            <option>XXXL</option>
-            <option>Large</option>
-            </select>
-            <input type="number" value="1">
-            <form action="{% url 'add_to_cart' produto.id %}" method="post">
+            <form action="{% url 'add_to_cart' produto.id %}" method="post" id="add-to-cart-form">
                 {% csrf_token %}
-                <button type="submit" class="normal">Adicionar ao carrinho</button>
+                <input type="number" name="quantity" value="1" min="1" max="{{ produto.estoque }}" required>
+                <button type="submit" class="normal btn-shine">Adicionar ao carrinho</button>
             </form>
             <h4>Detalhes do produto</h4>
             <div class="descricao-produto">
@@ -103,6 +95,20 @@
         </div>
     </section>   
     
+    <!-- Notificação de carrinho -->
+    <div id="cart-notification" class="cart-notification {% if messages %}show{% endif %}">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-message">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+            <button class="notification-close">&times;</button>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_js %}

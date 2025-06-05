@@ -3,6 +3,9 @@
 1. Carrinho
    - Tentar fazer o carrinho um popup, e no menu lateral se clicar na bolsinha
    do canto direito
+   - BUG DO ESTOQUE, nao consigo furar o estoque de uma vez, mas se eu adiciono
+   no carirnho primeiro e depois adiciono de novo, ele fura o estoque, consertar
+   isso depois.
 
 2. Criar sistema de login do cliente
    https://mdbootstrap.com/docs/standard/extended/login/

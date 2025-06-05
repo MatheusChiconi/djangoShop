@@ -280,6 +280,15 @@ footer .copyright {
   position: relative;
 }
 
+/* Cart item animation */
+.cart-item {
+    transition: all 0.5s ease;
+}
+
+.cart-items p {
+    transition: opacity 0.3s ease;
+}
+
 .item-image {
   width: 80px;
   height: 80px;
@@ -308,12 +317,6 @@ footer .copyright {
 }
 
 /* Controle de quantidade e preços */
-.quantity-price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 8px;
-}
 
 .quantity-control {
   display: flex;
@@ -321,24 +324,6 @@ footer .copyright {
   border: 1px solid #ccc;
   border-radius: 6px;
   overflow: hidden;
-}
-
-.qty-btn {
-  background: none;
-  border: none;
-  padding: 6px 12px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.qty {
-  padding: 6px 12px;
-  min-width: 24px;
-  text-align: center;
-}
-
-.price-info {
-  text-align: right;
 }
 
 .original-price {
@@ -366,6 +351,42 @@ footer .copyright {
 .cart-button:hover {
   background-color: #066861;
 }
+
+/* Quantity box styling */
+.quantity-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    min-width: 60px;
+}
+
+.qty-label {
+    font-size: 12px;
+    color: #666;
+    margin-right: 4px;
+}
+
+.qty-value {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Update layout for price info */
+.quantity-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+}
+
+.price-info {
+    text-align: right;
+}
+
 
 /* RESPONSIVO (header/footer) */
 @media (max-width: 1024px) {

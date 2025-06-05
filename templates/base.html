@@ -60,7 +60,7 @@
     </main>
 
     <!-- ========== OFFCANVAS CARRINHO ========== -->
-    <div class="offcanva offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
         <div class="offcanvas-header cart-header-custom">
             <h5 class="offcanvas-title cart-title-custom" id="cartSidebarLabel">🛒 Meu Carrinho</h5>
             <button type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
@@ -78,13 +78,15 @@
 
                             <div class="item-details">
                                 <p class="item-name mb-1">{{ item.name }}</p>
-                                <button class="remove-btn" aria-label="Remover item">&times;</button>
+                                <form method="post" action="{% url 'remove_from_cart' item.product_id %}" class="d-inline remove-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="remove-btn" aria-label="Remover item">&times;</button>
+                                </form>
 
                                 <div class="quantity-price">
-                                    <div class="quantity-control">
-                                        <button class="qty-btn">−</button>
-                                        <span class="qty">{{ item.quantity }}</span>
-                                        <button class="qty-btn">+</button>
+                                    <div class="quantity-box">
+                                        <span class="qty-label">Qtd:</span>
+                                        <span class="qty-value">{{ item.quantity }}</span>
                                     </div>
                                     <div class="price-info text-end">
                                         {% if item.old_price %}

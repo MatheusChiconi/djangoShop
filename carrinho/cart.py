@@ -45,6 +45,25 @@ class Cart():
                 self.cart[product_id]['quantity'] += qnt
             self.save()
 
+    def remove(self, productId):
+
+        product_id = str(productId)
+
+        if self.user.is_authenticated:
+            # Remove from DB cart for authenticated users
+            try:
+                # Get the product object first (since CartItem has a ForeignKey to Product)
+                product_obj = Produto.objects.get(id=product_id)
+                # Then find and delete the cart item
+                item = CartItem.objects.get(cart=self.db_cart, product=product_obj)
+                item.delete()
+            except (Produto.DoesNotExist, CartItem.DoesNotExist):
+                pass
+        else:
+            if product_id in self.cart:
+                del self.cart[product_id]
+                self.save()
+
     def items(self):
         """Return cart items regardless of storage method"""
         if self.user.is_authenticated:
@@ -57,11 +76,16 @@ class Cart():
                     'old_price': float(item.old_price) if item.old_price else None,
                     'image': item.product.imagem_principal.url,
                     'name': item.product.nome,
+                    'product_id': item.product.id,
                 })
             return db_items
         else:
-            # Return session items for anonymous users
-            return self.cart.values()
+            result = []
+            for product_id, item_data in self.cart.items():
+                item_copy = item_data.copy()
+                item_copy['product_id'] = product_id
+                result.append(item_copy)
+            return result
 
     def save(self):
         self.session['session_key'] = self.cart
