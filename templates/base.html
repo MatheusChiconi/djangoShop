@@ -121,6 +121,7 @@
     </div>
 
     <!-- ========== RODAPÉ ========== -->
+    {% block footer %}
     <footer class="section-p1">
         <div class="col">
             <img src="{% static 'img/logo.png' %}" class="logo" alt="Logo">
@@ -168,6 +169,7 @@
             <p>&copy; {% now "Y" %} E-commerce Site. All Rights Reserved</p>
         </div>
     </footer>
+    {% endblock %}
 
     <!-- Scripts -->
     <script src="{% static 'core/js/script_base.js' %}"></script>

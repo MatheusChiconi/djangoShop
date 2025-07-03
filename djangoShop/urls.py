@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from core.views import *
 from produtos.views import produtos
+from carrinho.views import cart_detail
 from django.http import HttpResponse
 
 def placeholder_view(request):
@@ -34,13 +35,13 @@ urlpatterns = [
     path('contas/', include('contas.urls')),
     path('contas/', include('django.contrib.auth.urls')),  # URLs de autenticação padrão do Django
     path('carrinho/', include('carrinho.urls')),
+    path('cart/', cart_detail, name='cart'),
 
     # Tirar o placeholder_view e colocar a view correta quando estiver pronto
     path('shop/', placeholder_view, name='shop'),
     path('blog/', placeholder_view, name='blog'),
     path('about/', placeholder_view, name='about'),
     path('contact/', placeholder_view, name='contact'),
-    path('cart/', placeholder_view, name='cart'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

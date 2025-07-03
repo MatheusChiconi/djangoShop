@@ -1,9 +1,10 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from produtos.models import Produto
 from .cart import Cart
 from django.contrib import messages
+
 
 @require_POST
 def add_to_cart(request, product_id):
@@ -37,3 +38,8 @@ def remove_from_cart(request, product_id):
     cart.remove(product_id)
     
     return HttpResponse(status=204)
+
+def cart_detail(request):
+    cart = Cart(request)
+    
+    return render(request, 'carrinho/cart_detail.html', {'cart': cart})
