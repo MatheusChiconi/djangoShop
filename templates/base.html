@@ -78,7 +78,7 @@
 
                             <div class="item-details">
                                 <p class="item-name mb-1">{{ item.name }}</p>
-                                <form method="post" action="{% url 'remove_from_cart' item.product_id %}" class="d-inline remove-form">
+                                <form method="post" action="{% url 'remove_from_cart_with_id' item.product_id %}" class="d-inline remove-form">
                                     {% csrf_token %}
                                     <button type="submit" class="remove-btn" aria-label="Remover item">&times;</button>
                                 </form>

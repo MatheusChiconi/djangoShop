@@ -18,38 +18,50 @@
         <h1 class="mb-4">Minha Cesta</h1>
 
         <div class="row">
-            <!-- Coluna dos produtos -->
-            <div class="col-lg-8">
-                <div class="card shadow-sm mb-3 product-card">
-                    <div class="card-body">
-                        <button type="button" class="btn-close remove-btn" aria-label="Remover"></button>
+            
+            <div class="col-lg-8"> <!-- Coluna dos produtos (lado esquerdo)-->
+                {% if cart.get_total_quantity == 0 %}
+                    <div class="alert alert-info" role="alert">
+                        Seu carrinho está vazio. Adicione produtos para continuar.
+                    </div>
+                {% else %}
+                    {% for item in cart.items %}
+                        <div class="card shadow-sm mb-3 product-card"> <!-- Card para cada produto -->
+                            <div class="card-body" data-id="{{ item.product_id }}">
+                                <button type="button" class="btn remove-btn" aria-label="Remover">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
 
-                        <div class="d-flex align-items-center flex-wrap h-100">
-                            <div class="flex-shrink-0">
-                                <img src="https://i.ibb.co/S6dKCb8/Meia-Cal-a-Kendall-M-dia-Compress-o-com-ponteira-1631.png" alt="Meia Calça Kendall com ponteira" class="product-img">
-                            </div>
+                                <div class="d-flex align-items-center flex-wrap h-100">
+                                    <div class="flex-shrink-0">
+                                        <img src="{{ item.image }}" class="product-img">
+                                    </div>
 
-                            <div class="flex-grow-1 ms-3 d-flex flex-column justify-content-center h-100">
-                                <h5 class="product-title">Meia Calça Kendall Média Compressão com ponteira 1631</h5>
-                                <p class="text-muted small mb-2">Vendido por: hbiatore</p>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn btn-outline-secondary btn-sm quantity-btn" data-change="-1">-</button>
-                                    <input type="number" class="form-control text-center quantity-input" value="1" min="1" readonly>
-                                    <button class="btn btn-outline-secondary btn-sm quantity-btn" data-change="1">+</button>
+                                    <div class="flex-grow-1 ms-3 d-flex flex-column justify-content-center h-100">
+                                        <h5 class="product-title">{{ item.name }}</h5>
+                                        <p class="text-muted small mb-2">{{ item.marca }}</p>
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-outline-secondary btn-sm quantity-btn" data-change="-1">-</button>
+                                            <input type="number" class="form-control text-center quantity-input" value="{{ item.quantity }}" min="1" readonly>
+                                            <button class="btn btn-outline-secondary btn-sm quantity-btn" data-change="1">+</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-end product-pricing mt-auto">
+                                        {% if item.old_price %}
+                                            <p class="original-price text-muted"><del>R$ {{ item.old_price|floatformat:2 }}</del></p>
+                                        {% endif %}
+                                        <p class="current-price" data-price="{{ item.price }}">R$ {{ item.price|floatformat:2 }}</p>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div class="text-end product-pricing mt-auto">
-                                <p class="original-price text-muted"><del>R$ 189,90</del></p>
-                                <p class="current-price" data-price="145.90">R$ 145,90</p>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    {% endfor %}
+                {% endif %}
 
-            <!-- Coluna do resumo do pedido -->
-            <div class="col-lg-4">
+            </div>
+            
+            <div class="col-lg-4"> <!-- Coluna do resumo do pedido (lado direito)-->
                 <div class="card shadow-sm summary-card">
                     <div class="card-body">
                         <h4 class="card-title text-center mb-4">Resumo do Pedido</h4>
@@ -65,9 +77,11 @@
 
                         <div class="d-flex justify-content-between mb-2">
                             <span>Sem Desconto</span>
-                            <span id="subtotal" class="text-decoration-line-through text-muted">R$ 0,00</span>
+                            <span id="subtotal" class="text-decoration-line-through text-muted">R$ {{ cart.get_total_old_price|floatformat:2 }}</span>
                         </div>
 
+
+                        <!-- PREÇO DO FRETE ADICIONAR DEPOIS FUNCIONALIDADE -->
                         <div id="shipping-cost-line" class="d-flex justify-content-between mb-3" style="display: none !important;">
                             <span>Frete</span>
                             <span id="shipping-cost">R$ 0,00</span>
@@ -77,7 +91,7 @@
 
                         <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
                             <span>Total</span>
-                            <span id="total">R$ 0,00</span>
+                            <span id="total">R$ {{ cart.get_total_price|floatformat:2 }}</span>
                         </div>
 
                         <div class="d-grid">
@@ -92,6 +106,10 @@
 
 {% block extra_js %}
     <!-- JavaScript específico desta página -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
     <script src="{% static 'carrinho/js/cart_detail.js' %}"></script>
 {% endblock %}
 

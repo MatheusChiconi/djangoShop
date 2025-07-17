@@ -66,7 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'carrinho.context_processors.carrinho',
+                'carrinho.context_processors.carrinho', # Load the cart anywhere in the site
             ],
         },
     },

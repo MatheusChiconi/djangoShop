@@ -26,8 +26,7 @@ class Cart():
             item, created = CartItem.objects.get_or_create(
                 cart=self.db_cart,
                 product=product,
-                defaults={'quantity': qnt, 'price': product.preco, 'old_price': product.comparacao_preco if product.tem_desconto() else None}
-            )
+                defaults={'quantity': qnt, 'price': product.preco, 'marca': product.marca, 'old_price': product.comparacao_preco if product.tem_desconto() else None})
             if not created:
                 item.quantity += qnt
                 item.save()
@@ -40,6 +39,7 @@ class Cart():
                     'old_price': float(product.comparacao_preco) if product.tem_desconto() else None,
                     'image': product.imagem_principal.url,
                     'name': product.nome,
+                    'marca': product.marca
                 }
             else:
                 self.cart[product_id]['quantity'] += qnt
@@ -114,3 +114,21 @@ class Cart():
         else:
             # Calculate from session items
             return sum(item['quantity'] for item in self.cart.values())
+        
+    def update_quantity(self, product_id, quantity):
+        product_id = str(product_id)
+
+        if self.user.is_authenticated:
+            # Update quantity in DB cart for authenticated users
+            try:
+                item = CartItem.objects.get(cart=self.db_cart, product__id=product_id)
+                item.quantity = quantity
+                print(f"Updating quantity for {item.product.nome} to {quantity}")
+                item.save()
+            except CartItem.DoesNotExist:
+                pass
+        else:
+            # Update quantity in session cart for anonymous users
+            if product_id in self.cart:
+                self.cart[product_id]['quantity'] = quantity
+                self.save()

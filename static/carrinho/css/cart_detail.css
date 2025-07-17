@@ -72,6 +72,7 @@ body {
 
 .remove-btn {
     transition: all 0.3s ease;
+    filter: invert(0);
 }
 
 .product-card.removing {
@@ -126,6 +127,7 @@ body {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
+    filter: invert(1);
 }
 
 .product-pricing {
