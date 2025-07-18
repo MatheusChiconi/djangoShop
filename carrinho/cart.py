@@ -1,3 +1,5 @@
+# carrinho/cart.py
+
 from .models import Cart as CartDB, CartItem
 from produtos.models import Produto
 
@@ -6,13 +8,12 @@ class Cart():
         self.session = request.session
         self.user = request.user
         
-        # For authenticated users, use DB cart
+        # Para usuários autenticados, usa o carrinho do banco de dados
         if self.user.is_authenticated:
             self.db_cart, _ = CartDB.objects.get_or_create(user=self.user)
-            # Initialize session cart but don't use it for authenticated users
-            self.cart = self.session.get('session_key', {})
+            self.cart = self.session.get('session_key', {}) # A sessão é apenas um backup
         else:
-            # For anonymous users, use session cart
+            # Para anônimos, usa o carrinho da sessão
             cart = self.session.get('session_key')
             if 'session_key' not in request.session:
                 cart = self.session['session_key'] = {}
@@ -22,39 +23,26 @@ class Cart():
         product_id = str(product.id)
 
         if self.user.is_authenticated:
-            # Use DB cart for authenticated users
             item, created = CartItem.objects.get_or_create(
                 cart=self.db_cart,
                 product=product,
-                defaults={'quantity': qnt, 'price': product.preco, 'marca': product.marca, 'old_price': product.comparacao_preco if product.tem_desconto() else None})
+                defaults={'quantity': qnt}
+            )
             if not created:
                 item.quantity += qnt
                 item.save()
         else:
-            # Use session cart for anonymous users
             if product_id not in self.cart:
-                self.cart[product_id] = {
-                    'quantity': qnt,
-                    'price': float(product.preco),
-                    'old_price': float(product.comparacao_preco) if product.tem_desconto() else None,
-                    'image': product.imagem_principal.url,
-                    'name': product.nome,
-                    'marca': product.marca
-                }
+                self.cart[product_id] = {'quantity': qnt}
             else:
                 self.cart[product_id]['quantity'] += qnt
             self.save()
 
     def remove(self, productId):
-
         product_id = str(productId)
-
         if self.user.is_authenticated:
-            # Remove from DB cart for authenticated users
             try:
-                # Get the product object first (since CartItem has a ForeignKey to Product)
                 product_obj = Produto.objects.get(id=product_id)
-                # Then find and delete the cart item
                 item = CartItem.objects.get(cart=self.db_cart, product=product_obj)
                 item.delete()
             except (Produto.DoesNotExist, CartItem.DoesNotExist):
@@ -64,27 +52,50 @@ class Cart():
                 del self.cart[product_id]
                 self.save()
 
-    def items(self):
-        """Return cart items regardless of storage method"""
+    def update_quantity(self, product_id, quantity):
+        product_id = str(product_id)
         if self.user.is_authenticated:
-            # Return items from DB for authenticated users
+            try:
+                item = CartItem.objects.get(cart=self.db_cart, product__id=product_id)
+                item.quantity = quantity
+                item.save()
+            except CartItem.DoesNotExist:
+                pass
+        else:
+            if product_id in self.cart:
+                self.cart[product_id]['quantity'] = quantity
+                self.save()
+
+    def items(self):
+        if self.user.is_authenticated:
+            cart_items = self.db_cart.items.select_related('product')
             db_items = []
-            for item in self.db_cart.items.all():
+            for item in cart_items:
                 db_items.append({
                     'quantity': item.quantity,
-                    'price': float(item.price),
-                    'old_price': float(item.old_price) if item.old_price else None,
+                    'price': float(item.product.preco),
+                    'old_price': float(item.product.comparacao_preco) if item.product.tem_desconto() else None,
                     'image': item.product.imagem_principal.url,
                     'name': item.product.nome,
+                    'marca': item.product.marca,
                     'product_id': item.product.id,
                 })
             return db_items
         else:
+            product_ids = self.cart.keys()
+            products = Produto.objects.filter(id__in=product_ids)
             result = []
-            for product_id, item_data in self.cart.items():
-                item_copy = item_data.copy()
-                item_copy['product_id'] = product_id
-                result.append(item_copy)
+            for product in products:
+                product_id_str = str(product.id)
+                result.append({
+                    'quantity': self.cart[product_id_str]['quantity'],
+                    'price': float(product.preco),
+                    'old_price': float(product.comparacao_preco) if product.tem_desconto() else None,
+                    'image': product.imagem_principal.url,
+                    'name': product.nome,
+                    'marca': product.marca,
+                    'product_id': product.id,
+                })
             return result
 
     def save(self):
@@ -93,42 +104,22 @@ class Cart():
     
     def get_total_price(self):
         if self.user.is_authenticated:
-            # Calculate from database items
-            return sum(item.quantity * float(item.price) for item in self.db_cart.items.all())
+            return sum(item.quantity * item.product.preco for item in self.db_cart.items.select_related('product'))
         else:
-            # Calculate from session items
-            return sum(item['quantity'] * item['price'] for item in self.cart.values())
+            product_ids = self.cart.keys()
+            products = Produto.objects.filter(id__in=product_ids)
+            return sum(self.cart[str(p.id)]['quantity'] * p.preco for p in products)
     
     def get_total_old_price(self):
         if self.user.is_authenticated:
-            # Calculate from database items
-            return sum(item.quantity * float(item.old_price) for item in self.db_cart.items.all() if item.old_price)
+            return sum(item.quantity * item.product.comparacao_preco for item in self.db_cart.items.select_related('product') if item.product.tem_desconto())
         else:
-            # Calculate from session items
-            return sum(item['quantity'] * item['old_price'] for item in self.cart.values() if item['old_price'])
+            product_ids = self.cart.keys()
+            products = Produto.objects.filter(id__in=product_ids)
+            return sum(self.cart[str(p.id)]['quantity'] * p.comparacao_preco for p in products if p.tem_desconto())
 
     def get_total_quantity(self):
         if self.user.is_authenticated:
-            # Calculate from database items
             return sum(item.quantity for item in self.db_cart.items.all())
         else:
-            # Calculate from session items
             return sum(item['quantity'] for item in self.cart.values())
-        
-    def update_quantity(self, product_id, quantity):
-        product_id = str(product_id)
-
-        if self.user.is_authenticated:
-            # Update quantity in DB cart for authenticated users
-            try:
-                item = CartItem.objects.get(cart=self.db_cart, product__id=product_id)
-                item.quantity = quantity
-                print(f"Updating quantity for {item.product.nome} to {quantity}")
-                item.save()
-            except CartItem.DoesNotExist:
-                pass
-        else:
-            # Update quantity in session cart for anonymous users
-            if product_id in self.cart:
-                self.cart[product_id]['quantity'] = quantity
-                self.save()

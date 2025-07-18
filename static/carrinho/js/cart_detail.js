@@ -1,4 +1,4 @@
-const DELAY = 300; // Tempo em milissegundos para debounce
+const DELAY = 600; // Tempo em milissegundos para debounce
 
 function debounce(func) {
     let timeoutId;
@@ -11,12 +11,12 @@ function debounce(func) {
 }
 
 function updateCartSummary(newTotal, newSubtotal) {
-    // Atualiza os valores de subtotal e total no DOM
+    // Pega os elementos do DOM
     const subtotalEl = document.getElementById('subtotal');
     const totalEl = document.getElementById('total');
 
-    const totalValue = typeof newTotal === 'number' ? newTotal : 0;
-    const subtotalValue = typeof newSubtotal === 'number' ? newSubtotal : 0;
+    const totalValue = parseFloat(newTotal) || 0;
+    const subtotalValue = parseFloat(newSubtotal) || 0;
 
     const formatCurrency = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -24,6 +24,7 @@ function updateCartSummary(newTotal, newSubtotal) {
     totalEl.textContent = formatCurrency(totalValue);
 }
 
+// QUANDO CLICO PARA REMOVER UM ITEM DO CARRINHO
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.remove-btn').forEach(button => {
         button.addEventListener('click', () => 
@@ -72,6 +73,9 @@ function sendQuantityUpdate(itemId, newQuantity, input) {
             const new_price = response.new_price;
             const new_price_without_discount = response.new_price_without_discount
 
+            console.log(`Atualizando quantidade do produto ${itemId} para ${newQuantity}`);
+            console.log(`Novo preço: ${new_price}, Preço sem desconto: ${new_price_without_discount}`);
+
             input.value = newQuantity;
             updateCartSummary(new_price, new_price_without_discount);
         },
@@ -83,6 +87,7 @@ function sendQuantityUpdate(itemId, newQuantity, input) {
 
 const debouncedUpdateQuantity = debounce(sendQuantityUpdate);
 
+// QUANDO CLICO PARA AUMENTAR OU DIMINUIR A QUANTIDADE DE UM ITEM
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".quantity-btn");
 
